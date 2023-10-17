@@ -1,0 +1,48 @@
+.box {
+  @include flex-center-center;
+  min-height: 100vh;
+
+  .box-container {
+    width: 100%;
+    max-width: 312px;
+  }
+
+  .main-title {
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .random-subject {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .bar-time {
+    width: 0px;
+    height: 2px;
+    background-color: $primary-color-500;
+    z-index: 1;
+    margin-top: -2px;
+  }
+
+  .bar-time-background {
+    height: 2px;
+    background-color: $neutral-color-200;
+  }
+
+  .buttons {
+    @include flex-align-center;
+    gap: 0.5rem;
+    @include max-width(312px);
+  }
+}
+
+@keyframes widthLeftRight {
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 100%;
+  }
+}
