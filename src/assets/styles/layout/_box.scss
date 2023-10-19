@@ -5,14 +5,16 @@
   .box-container {
     width: 100%;
     max-width: 312px;
+    color: $primary-color-500;
   }
 
   .main-title {
     text-align: center;
     font-size: 2rem;
+    margin-bottom: 1rem;
   }
 
-  .random-subject {
+  .random-words {
     font-size: 1.5rem;
     text-align: center;
   }
@@ -28,12 +30,6 @@
   .bar-time-background {
     height: 2px;
     background-color: $neutral-color-200;
-  }
-
-  .buttons {
-    @include flex-align-center;
-    gap: 0.5rem;
-    @include max-width(312px);
   }
 }
 
