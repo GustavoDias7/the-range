@@ -18,7 +18,7 @@ import ModalPrimary from "../components/ModalPrimary.vue";
             ></textarea>
           </div>
           <div class="interface">
-            <div class="row full">
+            <div class="row">
               <button
                 class="gn-button pm-button"
                 @click="openModal"
@@ -27,14 +27,26 @@ import ModalPrimary from "../components/ModalPrimary.vue";
                 Start
               </button>
             </div>
-            <div class="row full">
-              <input
-                type="text"
-                class="input filled"
-                :class="{ active: wpm.length > 0 }"
-                v-model="wpm"
-              />
-              <label for="wpm" class="label">WPM</label>
+            <div class="row wpm">
+              <div class="row">
+                <button class="gn-button pm-button" @click="lessSecond(5)">
+                  -5
+                </button>
+              </div>
+              <div class="row">
+                <input
+                  type="text"
+                  class="input filled"
+                  :class="{ active: wpm.length > 0 }"
+                  v-model="wpm"
+                />
+                <label for="wpm" class="label">WPM</label>
+              </div>
+              <div class="row">
+                <button class="gn-button pm-button" @click="plusSecond(5)">
+                  +5
+                </button>
+              </div>
             </div>
           </div>
         </form>
@@ -84,6 +96,15 @@ export default {
       this.currWord = "";
       this.counter = 0;
       this.modal = false;
+    },
+    lessSecond(sec) {
+      const newSec = Number(this.wpm) - sec;
+      if (newSec < 0) return;
+      this.wpm = String(newSec);
+    },
+    plusSecond(sec) {
+      const newSec = Number(this.wpm) + sec;
+      this.wpm = String(newSec);
     },
   },
   watch: {},

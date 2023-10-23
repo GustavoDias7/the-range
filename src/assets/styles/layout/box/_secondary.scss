@@ -49,6 +49,11 @@
       font-size: 14px;
       width: 100px;
     }
+
+    .row.wpm {
+      @include flex-align-center;
+      gap: 0.5rem;
+    }
   }
 }
 
