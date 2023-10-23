@@ -1,51 +1,60 @@
 <script setup>
 import words from "../mock/words";
-import "../assets/styles/pages/random-words.scss";
 </script>
 <template>
-  <div class="box">
-    <div class="box-container">
-      <form class="form" @submit.prevent="">
-        <div class="row">
-          <h1 class="main-title">Random Words</h1>
-        </div>
-        <div class="row">
-          <h2 class="random-words" v-text="randomWord"></h2>
-        </div>
-        <div class="row">
-          <div class="bar-time-background"></div>
-          <div
-            class="bar-time"
-            v-if="showBar"
-            :style="{
-              animation: `widthLeftRight ${seconds}s linear`,
-            }"
-          ></div>
-        </div>
-        <div class="row">
-          <button class="gn-button pm-button full" @click="handleClick">
-            {{ buttonText }}
-          </button>
-        </div>
-        <div class="row">
+  <div id="random-words">
+    <div class="box">
+      <div class="box-container">
+        <form class="form" @submit.prevent="">
           <div class="row">
-            <input
-              id="seconds"
-              v-model="seconds"
-              type="text"
-              class="input filled"
-              :class="{ active: seconds.length > 0 }"
-            />
-            <label for="seconds" class="label">
-              <span>Seconds</span>
-            </label>
+            <h1 class="main-title">Random Words</h1>
           </div>
-        </div>
-      </form>
+          <div class="row">
+            <h2 class="random-words" v-text="randomWord"></h2>
+          </div>
+          <div class="row">
+            <div class="bar-time-background"></div>
+            <div
+              class="bar-time"
+              v-if="showBar"
+              :style="{
+                animation: `widthLeftRight ${seconds}s linear`,
+              }"
+            ></div>
+          </div>
+          <div class="row">
+            <button class="gn-button pm-button full" @click="handleClick">
+              {{ buttonText }}
+            </button>
+            <br />
+            <button class="gn-button pm-button full" @click="resetTime">
+              Reset time
+            </button>
+          </div>
+          <div class="row">
+            <div class="row">
+              <input
+                id="seconds"
+                v-model="seconds"
+                type="text"
+                class="input filled"
+                :class="{ active: seconds.length > 0 }"
+              />
+              <label for="seconds" class="label">
+                <span>Seconds</span>
+              </label>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div :class="{ test: toggleReflow }"></div>
     </div>
-    <div :class="{ test: toggleReflow }"></div>
   </div>
 </template>
+
+<style lang="scss">
+@import "../assets/styles/pages/random-words.scss";
+</style>
 
 <script>
 export default {
@@ -57,7 +66,6 @@ export default {
       intervalRef: 0,
       showBar: false,
       toggleReflow: false,
-      accordion: false,
     };
   },
   methods: {
@@ -103,8 +111,8 @@ export default {
     toggle() {
       this.toggleReflow = !this.toggleReflow;
     },
-    toggleAccordion() {
-      this.accordion = !this.accordion;
+    resetTime() {
+      this.seconds = "0";
     },
   },
   watch: {

@@ -4,7 +4,7 @@
 
   .box-container {
     width: 100%;
-    max-width: 312px;
+    max-width: 480px;
     color: $primary-color-500;
   }
 
@@ -30,6 +30,25 @@
   .bar-time-background {
     height: 2px;
     background-color: $neutral-color-200;
+  }
+
+  .interface {
+    @include flex-align-center;
+    gap: 1rem;
+
+    .row {
+      width: fit-content;
+      margin-bottom: 0;
+    }
+
+    .label {
+      font-size: 14px !important;
+    }
+
+    .input {
+      font-size: 14px;
+      width: 100px;
+    }
   }
 }
 

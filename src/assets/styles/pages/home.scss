@@ -1,8 +1,9 @@
-@import "../themes/theme";
-@import "../base/global";
-@import "../base/container";
-@import "../utilities/breakpoints";
-@import "../utilities/mixins";
-@import "../components/buttons";
+#home {
+  @import "../themes/theme";
+  @import "../base/container";
+  @import "../utilities/breakpoints";
+  @import "../utilities/mixins";
+  @import "../components/buttons";
 
-@import "../layout/box";
+  @import "../layout/box/primary";
+}

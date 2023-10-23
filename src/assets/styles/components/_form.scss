@@ -4,7 +4,7 @@
   $padding: 16px;
 
   // dimentions
-  $inputHeight: 56px;
+  $inputHeight: 48px;
   $width: 312px;
 
   // borders
@@ -20,6 +20,10 @@
 
     &:last-of-type {
       margin-bottom: 0px;
+    }
+
+    &.full {
+      max-width: 100%;
     }
   }
 
@@ -75,6 +79,10 @@
 
     &.success {
       border-color: $success-color-100;
+    }
+
+    &.full {
+      max-width: 100%;
     }
   }
 
@@ -316,4 +324,8 @@
     resize: vertical;
     min-height: $inputHeight * 2;
   }
+}
+
+.box .form textarea.input {
+  height: 200px;
 }

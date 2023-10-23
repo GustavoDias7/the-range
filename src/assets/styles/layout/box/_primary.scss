@@ -1,0 +1,68 @@
+.box {
+  @include flex-center-center;
+  min-height: 100vh;
+
+  br {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .box-container {
+    width: 100%;
+    max-width: 312px;
+    color: $primary-color-500;
+  }
+
+  .main-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .random-words {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .bar-time {
+    width: 0px;
+    height: 2px;
+    background-color: $primary-color-500;
+    z-index: 1;
+    margin-top: -2px;
+  }
+
+  .bar-time-background {
+    height: 2px;
+    background-color: $neutral-color-200;
+  }
+
+  .interface {
+    @include flex-align-center;
+    gap: 1rem;
+
+    .row {
+      width: fit-content;
+      margin-bottom: 0;
+    }
+
+    .label {
+      font-size: 14px !important;
+    }
+
+    .input {
+      font-size: 14px;
+      width: 100px;
+    }
+  }
+}
+
+@keyframes widthLeftRight {
+  from {
+    width: 0px;
+  }
+
+  to {
+    width: 100%;
+  }
+}
