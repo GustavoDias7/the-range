@@ -27,12 +27,22 @@ import words from "../mock/words";
               {{ buttonText }}
             </button>
             <br />
-            <button class="gn-button pm-button full" @click="resetTime">
-              Reset time
-            </button>
+            <select
+              id="typeWord"
+              name="typeWord"
+              v-model="typeWord"
+              class="select"
+            >
+              <option value="">Word types</option>
+              <option value="common">Common Words</option>
+              <option value="nouns">Nouns</option>
+              <option value="objects">Objects</option>
+              <option value="adjectives">Adjectives</option>
+            </select>
+            <br />
           </div>
           <div class="row">
-            <div class="row">
+            <div class="input-container">
               <input
                 id="seconds"
                 v-model="seconds"
@@ -40,9 +50,12 @@ import words from "../mock/words";
                 class="input filled"
                 :class="{ active: seconds.length > 0 }"
               />
-              <label for="seconds" class="label">
-                <span>Seconds</span>
-              </label>
+              <label for="seconds" class="label">Seconds</label>
+              <div class="right-element">
+                <button class="gn-button sc-button full" @click="resetTime">
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
         </form>
@@ -60,7 +73,8 @@ import words from "../mock/words";
 export default {
   data() {
     return {
-      words: Object.entries(words),
+      list: Object.entries(words.common),
+      typeWord: "",
       seconds: "5",
       randomWord: "",
       intervalRef: 0,
@@ -71,10 +85,10 @@ export default {
   methods: {
     startRandom() {
       this.stopRandom();
-      this.choiceSubject();
+      this.choiceWord();
       if (Number(this.seconds) > 0) {
         this.intervalRef = setInterval(() => {
-          this.choiceSubject();
+          this.choiceWord();
           this.toggle();
           this.reflow();
         }, Number(this.seconds) * 1000);
@@ -94,12 +108,11 @@ export default {
         this.stopRandom();
       }
     },
-    choiceSubject() {
-      const { length } = this.words;
-      const letterIndex = Math.floor(Math.random() * length);
-      const length2 = this.words[letterIndex][1].length;
+    choiceWord() {
+      const letterIndex = Math.floor(Math.random() * this.list.length);
+      const length2 = this.list[letterIndex][1].length;
       const wordIndex = Math.floor(Math.random() * length2);
-      const word = this.words[letterIndex][1][wordIndex];
+      const word = this.list[letterIndex][1][wordIndex];
       this.randomWord = word;
     },
     reflow() {
@@ -119,6 +132,9 @@ export default {
     seconds() {
       this.showBar = false;
       this.stopRandom();
+    },
+    typeWord() {
+      this.list = Object.entries(words[this.typeWord]);
     },
   },
   computed: {

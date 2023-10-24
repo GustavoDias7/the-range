@@ -285,10 +285,10 @@
       margin: auto;
       height: min-content;
 
-      p {
-        background-color: #1a1a1a;
-        color: #f1f1f1;
-        padding: 4px;
+      .gn-button {
+        height: 32px;
+        padding: 0px 12px;
+        font-size: 12px;
       }
     }
 
