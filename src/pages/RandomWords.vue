@@ -33,7 +33,7 @@ import words from "../mock/words";
               v-model="typeWord"
               class="select"
             >
-              <option value="">Word types</option>
+              <option value="">Select word type</option>
               <option value="common">Common Words</option>
               <option value="nouns">Nouns</option>
               <option value="objects">Objects</option>
@@ -73,7 +73,7 @@ import words from "../mock/words";
 export default {
   data() {
     return {
-      list: Object.entries(words.common),
+      list: words.common,
       typeWord: "",
       seconds: "5",
       randomWord: "",
@@ -110,9 +110,7 @@ export default {
     },
     choiceWord() {
       const letterIndex = Math.floor(Math.random() * this.list.length);
-      const length2 = this.list[letterIndex][1].length;
-      const wordIndex = Math.floor(Math.random() * length2);
-      const word = this.list[letterIndex][1][wordIndex];
+      const word = this.list[letterIndex];
       this.randomWord = word;
     },
     reflow() {
@@ -134,7 +132,7 @@ export default {
       this.stopRandom();
     },
     typeWord() {
-      this.list = Object.entries(words[this.typeWord]);
+      this.list = words[this.typeWord];
     },
   },
   computed: {

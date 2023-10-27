@@ -1,6 +1,7 @@
 .box {
   @include flex-center-center;
   min-height: 100vh;
+  padding: 16px;
 
   br {
     display: block;

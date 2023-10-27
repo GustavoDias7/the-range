@@ -83,5 +83,5 @@
 }
 
 @function pathImages($filename: "") {
-  @return "../../icons/#{$filename}";
+  @return "/src/assets/icons/#{$filename}";
 }
