@@ -8,6 +8,9 @@
         ><br />
         <router-link to="/speed-reading" class="gn-button pm-button full"
           >Speed Reading</router-link
+        ><br />
+        <router-link to="/guided-reading" class="gn-button pm-button full"
+          >Guided Reading</router-link
         >
       </div>
     </div>
