@@ -1,5 +1,5 @@
 <script setup>
-import words from "../mock/words";
+import questions from "../mock/template-questions";
 </script>
 <template>
   <div id="random-words">
@@ -7,7 +7,7 @@ import words from "../mock/words";
       <div class="box-container">
         <form class="form" @submit.prevent="">
           <div class="row">
-            <h1 class="main-title">Random Words</h1>
+            <h1 class="main-title">Random Question</h1>
           </div>
           <div class="row">
             <h2 class="random-words" v-text="randomWord"></h2>
@@ -26,20 +26,6 @@ import words from "../mock/words";
             <button class="gn-button pm-button full" @click="handleClick">
               {{ buttonText }}
             </button>
-          </div>
-          <div class="row">
-            <select
-              id="typeWord"
-              name="typeWord"
-              v-model="typeWord"
-              class="select"
-            >
-              <option value="">Select word type</option>
-              <option value="common">Common Words</option>
-              <option value="nouns">Nouns</option>
-              <option value="objects">Objects</option>
-              <option value="adjectives">Adjectives</option>
-            </select>
           </div>
           <div class="row">
             <div class="input-container">
@@ -65,16 +51,11 @@ import words from "../mock/words";
   </div>
 </template>
 
-<style lang="scss">
-@import "../assets/styles/pages/random-words.scss";
-</style>
-
 <script>
 export default {
   data() {
     return {
-      list: words.common,
-      typeWord: "",
+      list: questions,
       seconds: "5",
       randomWord: "",
       intervalRef: 0,
@@ -130,9 +111,6 @@ export default {
     seconds() {
       this.showBar = false;
       this.stopRandom();
-    },
-    typeWord() {
-      this.list = words[this.typeWord];
     },
   },
   computed: {

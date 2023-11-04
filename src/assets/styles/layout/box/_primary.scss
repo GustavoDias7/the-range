@@ -3,15 +3,10 @@
   min-height: 100vh;
   padding: 16px;
 
-  br {
-    display: block;
-    margin-bottom: 1rem;
-  }
-
   .box-container {
     width: 100%;
     max-width: 312px;
-    color: $primary-color-500;
+    color: $neutral-color-100;
   }
 
   .main-title {
@@ -23,6 +18,7 @@
   .random-words {
     font-size: 1.5rem;
     text-align: center;
+    font-weight: normal;
   }
 
   .bar-time {

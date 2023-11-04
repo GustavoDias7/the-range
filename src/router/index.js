@@ -3,12 +3,18 @@ import Home from "../pages/Home.vue";
 import RandomWords from "../pages/RandomWords.vue";
 import SpeedReading from "../pages/SpeedReading.vue";
 import GuidedReading from "../pages/GuidedReading.vue";
+import RandomQuestion from "../pages/RandomQuestion.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
   { path: "/random-words", name: "RandomWords", component: RandomWords },
   { path: "/speed-reading", name: "SpeedReading", component: SpeedReading },
   { path: "/guided-reading", name: "GuidedReading", component: GuidedReading },
+  {
+    path: "/random-question",
+    name: "RandomQuestion",
+    component: RandomQuestion,
+  },
 ];
 
 const router = createRouter({ history: createWebHashHistory(), routes });

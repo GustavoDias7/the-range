@@ -44,16 +44,17 @@
     border-radius: $border-radius;
     padding: $padding;
     outline: none;
-    border: $primary-border;
+    border: $secondary-border;
     transition: border $primary-transition;
     background-color: transparent;
+    color: $neutral-color-200;
 
     &:focus~.label,
     &:hover~.label {
       top: -(#{$fontSize}px / 2);
     }
 
-    border-color: $primary-color-500;
+    border-color: $neutral-color-100;
 
     &:disabled {
       opacity: 0.4;
@@ -61,7 +62,7 @@
     }
 
     &::placeholder {
-      color: $primary-color-200;
+      color: $neutral-color-200;
     }
 
     &.transparent {
@@ -69,7 +70,7 @@
       user-select: none;
 
       &::placeholder {
-        color: $primary-color-200;
+        color: $neutral-color-200;
       }
     }
 
@@ -115,7 +116,7 @@
       top: 0px;
       left: 0px;
       width: 100%;
-      max-width: $width;
+      max-width: $width - $padding;
       display: flex;
       font-size: #{$fontSize}px;
       line-height: #{$fontSize}px;
@@ -135,14 +136,14 @@
       &::before {
         border-left: $primary-border;
         border-top-left-radius: $border-radius;
-        border-color: $primary-color-500;
+        border-color: $neutral-color-500;
         width: 11px;
       }
 
       &::after {
         border-right: $primary-border;
         border-top-right-radius: $border-radius;
-        border-color: $primary-color-500;
+        border-color: $neutral-color-500;
         flex: 1;
       }
 
@@ -234,7 +235,7 @@
       left: 16px;
       transition: $primary-transition;
       width: 100%;
-      max-width: $width;
+      max-width: $width - $padding;
       display: flex;
       font-size: #{$fontSize}px;
       line-height: #{$fontSize}px;
@@ -309,11 +310,16 @@
       display: none;
     }
 
+    padding: 0px 16px;
     cursor: pointer;
     background-image: url(pathImages("select-arrow.svg"));
     background-repeat: no-repeat;
     background-size: 10px;
     background-position: calc(100% - $padding) center;
+
+    option {
+      color: $neutral-color-800;
+    }
 
     option:first-child {
       display: none;
