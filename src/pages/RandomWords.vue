@@ -2,7 +2,7 @@
 import words from "../mock/words";
 </script>
 <template>
-  <div id="random-words">
+  <div class="global-background" id="random-words">
     <div class="box">
       <div class="box-container">
         <form class="form" @submit.prevent="">
@@ -75,7 +75,7 @@ export default {
     return {
       list: words.common,
       typeWord: "",
-      seconds: "5",
+      seconds: "4",
       randomWord: "",
       intervalRef: 0,
       showBar: false,

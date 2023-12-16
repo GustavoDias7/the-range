@@ -1,4 +1,4 @@
-#speed-reading {
+#question-training {
   @import "../themes/theme";
   @import "../base/container";
   @import "../utilities/breakpoints";
@@ -8,4 +8,17 @@
   @import "../components/form";
   @import "../layout/box/secondary";
   @import "../layout/modal/primary";
+
+  .bar-time {
+    width: 0px;
+    height: 2px;
+    background-color: $primary-color-500;
+    z-index: 1;
+    margin-top: -2px;
+  }
+
+  .bar-time-background {
+    height: 2px;
+    background-color: $neutral-color-200;
+  }
 }

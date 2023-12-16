@@ -25,6 +25,16 @@
     &.full {
       max-width: 100%;
     }
+
+    &.flex {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .row {
+        margin-bottom: 0px;
+      }
+    }
   }
 
   .label {

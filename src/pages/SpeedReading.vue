@@ -2,7 +2,7 @@
 import ModalPrimary from "../components/ModalPrimary.vue";
 </script>
 <template>
-  <div id="speed-reading">
+  <div class="global-background" id="speed-reading">
     <div class="box">
       <div class="box-container">
         <form class="form" @submit.prevent="">

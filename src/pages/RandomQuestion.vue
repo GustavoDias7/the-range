@@ -2,7 +2,7 @@
 import questions from "../mock/template-questions";
 </script>
 <template>
-  <div id="random-words">
+  <div class="global-background" id="random-words">
     <div class="box">
       <div class="box-container">
         <form class="form" @submit.prevent="">

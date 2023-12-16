@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div class="global-background" id="home">
     <div class="box">
       <div class="box-container">
         <h1 class="main-title">The Range</h1>
@@ -11,12 +11,16 @@
           >Random Question</router-link
         >
         <br />
-        <router-link to="/speed-reading" class="gn-button pm-button full"
-          >Speed Reading</router-link
+        <router-link to="/question-training" class="gn-button pm-button full"
+          >Question Training</router-link
         >
         <br />
         <router-link to="/guided-reading" class="gn-button pm-button full"
           >Guided Reading</router-link
+        >
+        <br />
+        <router-link to="/speed-reading" class="gn-button pm-button full"
+          >Speed Reading</router-link
         >
       </div>
     </div>
