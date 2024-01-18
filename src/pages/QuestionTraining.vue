@@ -1,5 +1,7 @@
 <script setup>
 import ModalTertiary from "../components/ModalTertiary.vue";
+import popUpSound from "../assets/sound/pop-up-something.mp3";
+import words from "../mock/words";
 </script>
 <template>
   <div class="global-background" id="question-training">
@@ -48,6 +50,18 @@ import ModalTertiary from "../components/ModalTertiary.vue";
             </div>
           </div>
           <div class="row full">
+            <label for="check" class="check">
+              <input
+                id="check"
+                name="check"
+                type="checkbox"
+                v-model="suggestion"
+              />
+              <span class="marker"></span>
+              <span class="text">Suggestion</span>
+            </label>
+          </div>
+          <div class="row full">
             <button
               class="gn-button pm-button full"
               :disabled="
@@ -67,7 +81,10 @@ import ModalTertiary from "../components/ModalTertiary.vue";
       :current_round="counter_rounds"
       :quantity_rounds="rounds"
       :second_counter="second_counter"
-      @click="closeModal"
+      :random_word="randomWord"
+      :suggestion="suggestion"
+      :closeModal="closeModal"
+      :choiceWord="choiceWord"
     />
   </div>
 </template>
@@ -80,15 +97,17 @@ import ModalTertiary from "../components/ModalTertiary.vue";
 export default {
   data() {
     return {
-      start: 6,
-      speek: 12,
-      question: 6,
-      rounds: 3,
+      start: 4,
+      speek: 25,
+      question: 8,
+      rounds: 10,
+      suggestion: true,
       modal: false,
       interval_id: 0,
       counter_rounds: 1,
       second_counter: 0,
       turn: "start", // start | (speek | question)
+      randomWord: "",
     };
   },
   methods: {
@@ -102,17 +121,20 @@ export default {
 
     openModal() {
       this.modal = !this.modal;
+      if (this.suggestion) this.choiceWord();
 
       this.interval_id = setInterval(() => {
         if (this.second_counter < this[this.turn]) {
           this.second_counter++;
         } else {
+          this.playSound();
           this.second_counter = 0;
           if (this.turn === "start") {
             this.turn = "speek";
           } else if (this.turn === "speek") {
             if (this.counter_rounds === this.rounds) this.closeModal();
             else this.turn = "question";
+            if (this.suggestion) this.choiceWord();
           } else if (this.turn === "question") {
             this.turn = "speek";
             this.counter_rounds++;
@@ -122,15 +144,24 @@ export default {
     },
 
     active(prop) {
-      return {
-        active: this[prop] !== "",
-      };
+      return { active: this[prop] !== "" };
     },
 
     isValidFields(fields = []) {
       return fields.every(
         (field) => this[field] != "" && !isNaN(this[field]) && this[field] > 0
       );
+    },
+
+    playSound() {
+      const audio = new Audio(popUpSound);
+      audio.play();
+    },
+
+    choiceWord() {
+      const letterIndex = Math.floor(Math.random() * words.categories.length);
+      const word = words.categories[letterIndex];
+      this.randomWord = word;
     },
   },
   watch: {},

@@ -26,6 +26,11 @@
         font-size: 3rem;
         font-weight: normal;
         color: $neutral-color-100;
+
+        &.random-word {
+          user-select: none;
+          cursor: pointer;
+        }
       }
 
       hr {
