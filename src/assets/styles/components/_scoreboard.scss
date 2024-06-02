@@ -1,0 +1,18 @@
+.scoreboard {
+  @include flex-center-around;
+  @include max-width(312px, true);
+  height: 100px;
+  border: $secondary-border;
+
+  >div {
+    text-align: center;
+
+    h3 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 3rem;
+    }
+  }
+}
