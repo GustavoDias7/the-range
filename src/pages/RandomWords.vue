@@ -1,5 +1,5 @@
 <script setup>
-import words from "../mock/words";
+import subjects from "../mock/subjects";
 import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
 </script>
 <template>
@@ -42,20 +42,6 @@ import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
               Count (K)
             </button>
           </div>
-          <!-- <div class="row">
-            <select
-              id="typeWord"
-              name="typeWord"
-              v-model="typeWord"
-              class="select"
-            >
-              <option value="">Select word type</option>
-              <option value="common">Common Words</option>
-              <option value="nouns">Nouns</option>
-              <option value="objects">Objects</option>
-              <option value="adjectives">Adjectives</option>
-            </select>
-          </div> -->
           <div class="row">
             <input
               id="seconds"
@@ -82,8 +68,7 @@ export default {
   data() {
     return {
       isRunning: false,
-      list: words.objects,
-      // typeWord: "",
+      list: [...subjects],
       seconds: 0,
       randomWord: "???",
       intervalRef: 0,
@@ -135,8 +120,7 @@ export default {
     },
     choiceWord() {
       if (this.list.length === 0) {
-        // this.list = this.shuffleArray(words[this.typeWord]);
-        this.list = this.shuffleArray(words.objects);
+        this.list = this.shuffleArray([...subjects]);
       }
       const letterIndex = Math.floor(Math.random() * this.list.length);
       const word = this.list[letterIndex];
@@ -183,11 +167,8 @@ export default {
     seconds() {
       this.showBar = false;
       this.stopRandom();
-      this.saveLocal("seconds", this.seconds);
+      this.saveLocal("seconds_words", this.seconds);
     },
-    // typeWord() {
-    //   this.list = this.shuffleArray(words[this.typeWord]);
-    // },
     isRunning() {
       if (this.isRunning === true) this.score = 0;
     },
@@ -208,7 +189,7 @@ export default {
         this.handleClick();
       }
     });
-    this.seconds = Number(this.getLocal("seconds"));
+    this.seconds = Number(this.getLocal("seconds_words"));
   },
 };
 </script>
