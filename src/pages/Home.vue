@@ -11,16 +11,12 @@
           >Random Question</router-link
         >
         <br />
-        <router-link to="/question-training" class="gn-button pm-button full"
-          >Question Training</router-link
+        <router-link to="/random-advices" class="gn-button pm-button full"
+          >Random Advices</router-link
         >
         <br />
         <router-link to="/guided-reading" class="gn-button pm-button full"
           >Guided Reading</router-link
-        >
-        <br />
-        <router-link to="/speed-reading" class="gn-button pm-button full"
-          >Speed Reading</router-link
         >
       </div>
     </div>
