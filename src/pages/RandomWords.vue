@@ -1,5 +1,5 @@
 <script setup>
-import subjects from "../mock/subjects";
+import objects from "../mock/objects";
 import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
 </script>
 <template>
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       isRunning: false,
-      list: [...subjects],
+      list: [...objects],
       seconds: 0,
       randomWord: "???",
       intervalRef: 0,
@@ -120,7 +120,7 @@ export default {
     },
     choiceWord() {
       if (this.list.length === 0) {
-        this.list = this.shuffleArray([...subjects]);
+        this.list = this.shuffleArray([...objects]);
       }
       const letterIndex = Math.floor(Math.random() * this.list.length);
       const word = this.list[letterIndex];
