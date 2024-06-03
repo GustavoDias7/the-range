@@ -5,6 +5,7 @@ import SpeedReading from "../pages/SpeedReading.vue";
 import GuidedReading from "../pages/GuidedReading.vue";
 import RandomQuestion from "../pages/RandomQuestion.vue";
 import QuestionTraining from "../pages/QuestionTraining.vue";
+import RandomAdvices from "../pages/RandomAdvices.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
@@ -20,6 +21,11 @@ const routes = [
     path: "/question-training",
     name: "QuestionTraining",
     component: QuestionTraining,
+  },
+  {
+    path: "/random-advices",
+    name: "RandomAdvices",
+    component: RandomAdvices,
   },
 ];
 
