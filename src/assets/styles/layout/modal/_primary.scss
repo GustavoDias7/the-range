@@ -22,8 +22,12 @@
 
       text-align: center;
 
+      >div {
+        @include max-width(480px, true);
+      }
+
       h2 {
-        font-size: 3rem;
+        font-size: 1rem;
         font-weight: normal;
         color: $neutral-color-100;
 

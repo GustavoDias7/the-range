@@ -4,6 +4,7 @@ import RandomWords from "../pages/RandomWords.vue";
 import GuidedReading from "../pages/GuidedReading.vue";
 import RandomQuestion from "../pages/RandomQuestion.vue";
 import RandomAdvices from "../pages/RandomAdvices.vue";
+import JohnPlace from "../pages/JohnPlace.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
@@ -18,6 +19,11 @@ const routes = [
     path: "/random-advices",
     name: "RandomAdvices",
     component: RandomAdvices,
+  },
+  {
+    path: "/john-place",
+    name: "JohnPlace",
+    component: JohnPlace,
   },
 ];
 

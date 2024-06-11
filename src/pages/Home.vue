@@ -18,6 +18,10 @@
         <router-link to="/guided-reading" class="gn-button pm-button full"
           >Guided Reading</router-link
         >
+        <br />
+        <router-link to="/john-place" class="gn-button pm-button full"
+          >John Place</router-link
+        >
       </div>
     </div>
   </div>
