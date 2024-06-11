@@ -65,7 +65,7 @@ export default {
     return {
       listMajor: [...arcana.majorArcana],
       listMinor: [...arcana.minorArcana],
-      seconds: 60,
+      seconds: 0,
       major: {
         name: "???",
         meaning: "???",
