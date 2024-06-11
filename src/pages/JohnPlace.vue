@@ -19,7 +19,7 @@ import ModalPrimary from "../components/ModalPrimary.vue";
               <button
                 class="gn-button pm-button"
                 @click="start"
-                :disabled="!this.splittedText.length"
+                :disabled="!splittedText.length"
               >
                 Start
               </button>
