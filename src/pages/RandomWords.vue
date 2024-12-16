@@ -40,21 +40,21 @@ import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
           <div class="row flex">
             <button
               class="gn-button pm-button full"
-              :class="{ active: seconds === 8 }"
+              :class="{ active: seconds === 6 }"
               @click="setEasy"
             >
               Easy
             </button>
             <button
               class="gn-button pm-button full"
-              :class="{ active: seconds === 6 }"
+              :class="{ active: seconds === 4 }"
               @click="setNormal"
             >
               Normal
             </button>
             <button
               class="gn-button pm-button full"
-              :class="{ active: seconds === 4 }"
+              :class="{ active: seconds === 3 }"
               @click="setHard"
             >
               Hard
@@ -96,13 +96,13 @@ export default {
       return mergedArray;
     },
     setEasy() {
-      this.seconds = 8;
-    },
-    setNormal() {
       this.seconds = 6;
     },
-    setHard() {
+    setNormal() {
       this.seconds = 4;
+    },
+    setHard() {
+      this.seconds = 3;
     },
     startRandom() {
       this.isRunning = true;
