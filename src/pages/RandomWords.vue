@@ -1,5 +1,5 @@
 <script setup>
-import objects from "../mock/objects";
+import objects from "../mock/objects.json";
 import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
 </script>
 <template>
@@ -9,9 +9,9 @@ import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
         <form class="form" @submit.prevent="">
           <div class="row">
             <div class="scoreboard">
-              <div class="score">
-                <h3>Score</h3>
-                <p v-text="score"></p>
+              <div class="seconds">
+                <h3>Seconds</h3>
+                <p v-text="seconds"></p>
               </div>
               <div class="remaining">
                 <h3>Remaining</h3>
@@ -37,20 +37,28 @@ import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
               {{ buttonText }} (Enter)
             </button>
           </div>
-          <div class="row">
-            <button class="gn-button pm-button full" @click="setCount">
-              Count (K)
+          <div class="row flex">
+            <button
+              class="gn-button pm-button full"
+              :class="{ active: seconds === 8 }"
+              @click="setEasy"
+            >
+              Easy
             </button>
-          </div>
-          <div class="row">
-            <input
-              id="seconds"
-              v-model.number="seconds"
-              type="text"
-              class="input filled"
-              :class="active(seconds)"
-            />
-            <label for="seconds" class="label">Seconds</label>
+            <button
+              class="gn-button pm-button full"
+              :class="{ active: seconds === 6 }"
+              @click="setNormal"
+            >
+              Normal
+            </button>
+            <button
+              class="gn-button pm-button full"
+              :class="{ active: seconds === 4 }"
+              @click="setHard"
+            >
+              Hard
+            </button>
           </div>
         </form>
       </div>
@@ -68,17 +76,34 @@ export default {
   data() {
     return {
       isRunning: false,
-      list: [...objects],
+      list: this.mergeArrays(objects),
       seconds: 0,
       randomWord: "???",
       intervalRef: 0,
       showBar: false,
       toggleReflow: false,
-      score: 0,
       remaining: 30,
     };
   },
   methods: {
+    mergeArrays(data) {
+      let mergedArray = [];
+      for (let letter in data) {
+        if (data.hasOwnProperty(letter)) {
+          mergedArray = mergedArray.concat(data[letter]);
+        }
+      }
+      return mergedArray;
+    },
+    setEasy() {
+      this.seconds = 8;
+    },
+    setNormal() {
+      this.seconds = 6;
+    },
+    setHard() {
+      this.seconds = 4;
+    },
     startRandom() {
       this.isRunning = true;
       this.choiceWord();
@@ -93,17 +118,9 @@ export default {
       this.remaining = 30;
       this.randomWord = "???";
     },
-    setCount() {
-      if (this.isRunning && this.score < 30) {
-        clearInterval(this.intervalRef);
-        this.score++;
-        this.next();
-        this.startRandom();
-        this.playSound();
-      }
-    },
     next() {
       this.remaining--;
+      this.playSound();
       this.choiceWord();
       this.toggle();
       this.reflow();
@@ -120,7 +137,7 @@ export default {
     },
     choiceWord() {
       if (this.list.length === 0) {
-        this.list = this.shuffleArray([...objects]);
+        this.list = this.shuffleArray([...this.mergeArrays(objects)]);
       }
       const letterIndex = Math.floor(Math.random() * this.list.length);
       const word = this.list[letterIndex];

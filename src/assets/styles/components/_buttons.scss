@@ -39,6 +39,10 @@
 .pm-button {
   background-color: $primary-color-500;
   color: $neutral-color-100;
+
+  &.active {
+    background-color: $primary-color-700;
+  }
 }
 
 .sc-button {
