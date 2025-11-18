@@ -1,13 +1,14 @@
 <script setup>
 import objects from "../mock/objects.json";
 import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
+import CustomList from "../components/CustomList.vue";
 </script>
 <template>
   <div class="global-background" id="random-words">
     <div class="box">
       <div class="box-container">
         <form class="form" @submit.prevent="">
-          <div class="row">
+          <div class="row full">
             <div class="scoreboard">
               <div class="seconds">
                 <h3>Seconds</h3>
@@ -15,55 +16,53 @@ import bellSound from "../assets/sound/copper-bell-ding-4-204990.mp3";
               </div>
               <div class="remaining">
                 <h3>Remaining</h3>
-                <p v-text="remaining"></p>
+                <p v-text="'∞'" v-if="infinity"></p>
+                <p v-text="remaining" v-else></p>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row full">
             <h2 class="random-words" v-text="randomWord"></h2>
           </div>
-          <div class="row">
+          <div class="row full">
             <div class="bar-time-background"></div>
-            <div
-              class="bar-time"
-              v-if="showBar"
-              :style="{
-                animation: `widthLeftRight ${seconds}s linear`,
-              }"
-            ></div>
+            <div class="bar-time" v-if="showBar" :style="{
+              animation: `widthLeftRight ${seconds}s linear`,
+            }"></div>
           </div>
-          <div class="row">
+          <div class="row full">
             <button class="gn-button pm-button full" @click="handleClick">
               {{ buttonText }} (Enter)
             </button>
           </div>
-          <div class="row flex">
-            <button
-              class="gn-button pm-button full"
-              :class="{ active: seconds === 6 }"
-              @click="setEasy"
-            >
-              Easy
+          <div class="row full flex">
+            <button class="gn-button pm-button full" :class="{ active: seconds === 10 }" @click="setVeryEasy">
+              10s
             </button>
-            <button
-              class="gn-button pm-button full"
-              :class="{ active: seconds === 4 }"
-              @click="setNormal"
-            >
-              Normal
+            <button class="gn-button pm-button full" :class="{ active: seconds === 6 }" @click="setEasy">
+              6s
             </button>
-            <button
-              class="gn-button pm-button full"
-              :class="{ active: seconds === 3 }"
-              @click="setHard"
-            >
-              Hard
+            <button class="gn-button pm-button full" :class="{ active: seconds === 4 }" @click="setNormal">
+              4s
+            </button>
+            <button class="gn-button pm-button full" :class="{ active: seconds === 3 }" @click="setHard">
+              3s
+            </button>
+          </div>
+          <div class="row full flex">
+            <button class="gn-button pm-button full" @click="infinity = !infinity">
+              <template v-if="infinity">Infinity</template>
+              <template v-else>Counter</template>
+            </button>
+            <button class="gn-button pm-button full" @click="openModal">
+              Custom
             </button>
           </div>
         </form>
       </div>
       <div :class="{ test: toggleReflow }"></div>
     </div>
+    <CustomList :active="modal" :closeModal="closeModal" :setCustomList="setCustomList" />
   </div>
 </template>
 
@@ -83,9 +82,24 @@ export default {
       showBar: false,
       toggleReflow: false,
       remaining: 30,
+      modal: false,
+      customList: "",
+      infinity: false,
     };
   },
   methods: {
+    setCustomList(e) {
+      this.customList = e.target.value;
+    },
+    openModal() {
+      this.modal = true;
+    },
+    closeModal() {
+      this.modal = false;
+      if (this.customList) {
+        this.list = this.customList.split(";");
+      }
+    },
     mergeArrays(data) {
       let mergedArray = [];
       for (let letter in data) {
@@ -94,6 +108,9 @@ export default {
         }
       }
       return mergedArray;
+    },
+    setVeryEasy() {
+      this.seconds = 10;
     },
     setEasy() {
       this.seconds = 6;
@@ -119,7 +136,7 @@ export default {
       this.randomWord = "???";
     },
     next() {
-      this.remaining--;
+      if (!this.infinity) this.remaining--;
       this.playSound();
       this.choiceWord();
       this.toggle();
@@ -137,7 +154,11 @@ export default {
     },
     choiceWord() {
       if (this.list.length === 0) {
-        this.list = this.shuffleArray([...this.mergeArrays(objects)]);
+        if (this.customList) {
+          this.list = this.customList.split(";");
+        } else {
+          this.list = this.shuffleArray([...this.mergeArrays(objects)]);
+        }
       }
       const letterIndex = Math.floor(Math.random() * this.list.length);
       const word = this.list[letterIndex];

@@ -1,6 +1,6 @@
 .scoreboard {
   @include flex-center-around;
-  @include max-width(312px, true);
+  // @include max-width(312px, true);
   height: 100px;
   border: $secondary-border;
 
