@@ -36,16 +36,24 @@ import CustomList from "../components/CustomList.vue";
             </button>
           </div>
           <div class="row full flex">
-            <button class="gn-button pm-button full" :class="{ active: seconds === 10 }" @click="setVeryEasy">
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 12 }"
+              @click="setXXVeryEasy">
+              12s
+            </button>
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 10 }"
+              @click="setXVeryEasy">
               10s
             </button>
-            <button class="gn-button pm-button full" :class="{ active: seconds === 6 }" @click="setEasy">
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 8 }" @click="setVeryEasy">
+              8s
+            </button>
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 6 }" @click="setEasy">
               6s
             </button>
-            <button class="gn-button pm-button full" :class="{ active: seconds === 4 }" @click="setNormal">
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 4 }" @click="setNormal">
               4s
             </button>
-            <button class="gn-button pm-button full" :class="{ active: seconds === 3 }" @click="setHard">
+            <button class="gn-button pm-button no-padding full" :class="{ active: seconds === 3 }" @click="setHard">
               3s
             </button>
           </div>
@@ -109,8 +117,14 @@ export default {
       }
       return mergedArray;
     },
-    setVeryEasy() {
+    setXXVeryEasy() {
+      this.seconds = 12;
+    },
+    setXVeryEasy() {
       this.seconds = 10;
+    },
+    setVeryEasy() {
+      this.seconds = 8;
     },
     setEasy() {
       this.seconds = 6;

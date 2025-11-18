@@ -1,4 +1,7 @@
 .gn-button {
+  $height: 40px;
+  $padding: 16px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +17,10 @@
   background-color: $neutral-color-100;
   transition: all 0.2s ease 0s;
   user-select: none;
+
+  &.no-padding {
+    padding: 0;
+  }
 
   &:focus,
   &:hover {
@@ -31,6 +38,12 @@
 
   &.center {
     margin: 0px auto;
+  }
+
+  &.small {
+    font-size: 0.875rem;
+    height: $height - 8px;
+    padding: 0px $padding - 4px;
   }
 }
 
